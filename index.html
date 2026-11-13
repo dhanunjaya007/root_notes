@@ -26,7 +26,7 @@ a:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
 .leafstrip{height:44px;background-color:var(--bark);background-repeat:repeat-x;background-position:center;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='44'%3E%3Cpath d='M24 4c10 6 12 18 0 34C12 22 14 10 24 4z' fill='%236f9a3c'/%3E%3Cpath d='M24 12v28' stroke='%232f4a24' stroke-width='2'/%3E%3Ccircle cx='4' cy='22' r='3' fill='%23c98a2b'/%3E%3C/svg%3E")}
 header{background:var(--moss);color:var(--lichen);border-bottom:8px solid var(--bark)}
-.top{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding:.9rem 1.25rem;border-bottom:3px solid var(--bark);background:var(--bark);font-weight:700}
+.top{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding:.9rem 1.25rem;background:var(--bark);font-weight:700}
 .top a{text-decoration:none;color:var(--lichen);margin-right:1.25rem}
 .top a:hover{color:var(--amber)}
 .hero{max-width:64rem;margin:0 auto;padding:2rem 1.25rem 2.5rem;position:relative}
@@ -41,7 +41,6 @@ main{max-width:64rem;margin:0 auto;padding:2.5rem 1.25rem 3rem}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.6rem}
 .card{border:5px solid var(--bark);box-shadow:8px 8px 0 var(--bark);padding:1.25rem;display:flex;flex-direction:column;gap:.5rem;color:var(--ink)}
 .card:nth-child(1){background:var(--leaf)} .card:nth-child(2){background:var(--amber)}
-.card:nth-child(3){background:var(--lichen)} .card:nth-child(4){background:var(--bark);color:var(--lichen)}
 .card h3{font:800 1.6rem/1.15 "Bitter",serif;margin:0}
 .card h3 a{text-decoration:none}
 .card h3 a:hover{text-decoration:underline;text-decoration-thickness:4px}
@@ -55,13 +54,15 @@ main{max-width:64rem;margin:0 auto;padding:2.5rem 1.25rem 3rem}
 .about .r p{margin:0 0 .8rem}
 .btn{display:inline-block;background:var(--amber);color:var(--ink);border:4px solid var(--bark);box-shadow:5px 5px 0 var(--bark);padding:.3rem .9rem;font-weight:700;text-decoration:none;margin-bottom:1.75rem}
 .btn:hover{background:var(--lichen)}
-.banner{border:5px solid var(--bark);box-shadow:8px 8px 0 var(--bark);padding:1.5rem;margin-bottom:2rem;color:var(--ink)}
-.banner.c0{background:var(--leaf)} .banner.c1{background:var(--amber)} .banner.c2{background:var(--lichen)}
+.banner{border:5px solid var(--bark);box-shadow:8px 8px 0 var(--bark);padding:1.5rem;margin-bottom:2rem;background:var(--leaf);color:var(--ink)}
 .banner h1{font:800 clamp(2rem,6vw,3.4rem)/1.05 "Bitter",serif;margin:.6rem 0 .4rem}
-article{max-width:40rem}
+article{max-width:42rem}
 article p{margin:0 0 1.2rem;font-size:1.15rem;line-height:1.7}
 article p:first-of-type::first-letter{font:800 4.2rem/.8 "Bitter",serif;float:left;padding:.3rem .5rem 0 0;color:var(--moss)}
 :root[data-theme="dark"] article p:first-of-type::first-letter{color:var(--leaf)}
+article h2{font:800 1.7rem/1.2 "Bitter",serif;margin:2rem 0 .8rem;padding-bottom:.3rem;border-bottom:4px solid var(--bark);display:inline-block}
+.eq{border:4px solid var(--bark);background:var(--paper);padding:1rem;margin:0 0 1.2rem;font:500 1.15rem "Bitter",serif;overflow-x:auto;white-space:pre-wrap}
+pre{background:var(--bark);color:var(--lichen);border:4px solid var(--bark);padding:1rem;margin:0 0 1.2rem;overflow-x:auto;font:.95rem/1.5 ui-monospace,Consolas,monospace}
 blockquote{margin:0 0 1.5rem;padding:.8rem 1.1rem;border-left:12px solid var(--leaf);background:var(--paper);font:500 1.3rem/1.35 "Bitter",serif}
 footer{background:var(--bark);color:var(--lichen);text-align:center;padding:1.25rem;font-weight:700;border-top:8px solid var(--moss)}
 @media (max-width:640px){
@@ -82,27 +83,139 @@ footer{background:var(--bark);color:var(--lichen);text-align:center;padding:1.25
   </div>
   <div class="leafstrip" role="presentation"></div>
 </header>
-<div class="ticker" aria-hidden="true"><span>Optimizers</span><span>Fine-tuning</span><span>NLP</span><span>Error analysis</span><span>Small experiments</span><span>Optimizers</span><span>Fine-tuning</span><span>NLP</span></div>
+<div class="ticker" aria-hidden="true"><span>Optimizers</span><span>Convex optimization</span><span>Fine-tuning</span><span>NLP</span><span>Small experiments</span><span>Optimizers</span><span>Convex optimization</span></div>
 <main id="app"></main>
 <div class="leafstrip" role="presentation"></div>
 <footer>Rootnotes. Grown slowly, one post at a time.</footer>
 <script>
 var POSTS = [
-  {id:"rmsprop", title:"How RMSProp tames the learning rate", date:"13 November 2026", tags:["Optimizers","Basics"],
-   summary:"Why dividing by a running average of squared gradients helps.",
-   body:["Plain gradient descent uses one learning rate for every parameter. That works until some directions are steep and others are flat, and then a rate that is safe for the steep ones crawls along the flat ones.",
-         "RMSProp keeps a running average of each parameter’s squared gradient and divides the update by its square root. Parameters with large, noisy gradients take smaller steps. Parameters with small gradients take relatively larger ones.",
-         "This is a sample draft. Replace it with your own post, ideally with a small experiment you ran yourself."]},
-  {id:"qlora-notes", title:"Notes from fine-tuning a 7B model with QLoRA", date:"6 November 2026", tags:["Fine-tuning","LLMs"],
-   summary:"What fits in memory, what breaks, and what I would change.",
-   body:["QLoRA loads the base model in 4-bit precision and trains small low-rank adapters on top. That is what makes a 7B model trainable on a single consumer GPU.",
-         "Most of my time went into the data, not the training loop. Formatting, length limits and duplicates mattered more than any hyperparameter I tuned.",
-         "This is a sample draft. Swap in your real numbers, errors and fixes."]},
-  {id:"sarcasm", title:"Why my sentiment classifier fails on sarcasm", date:"30 October 2026", tags:["NLP","Error analysis"],
-   summary:"A small error analysis on a movie review dataset.",
-   body:["A bag-of-words model sees “great” and says positive. A sarcastic review that says “great, two hours I will never get back” breaks that assumption.",
-         "Reading fifty misclassified reviews taught me more than another round of tuning. Error analysis is cheap and usually worth doing first.",
-         "This is a sample draft. Add your own examples and what you tried."]}
+ {id:"center-of-gravity", title:"The Center of Gravity method: an optimizer with no learning rate", date:"13 November 2026", tags:["Optimizers","Convex optimization"],
+ summary:"Binary search in n dimensions: how cutting through the centroid shrinks the search region, why it is safe, and how fast it converges.",
+ body:[
+  {h:"The problem: finding the lowest point"},
+  "We have a bowl-shaped (convex) function f and an allowed region X, and we want the lowest value of f inside X.",
+  {eq:"min f(x) for x in X"},
+  "Convex means there are no fake valleys, so any local minimum is the global minimum. We are only allowed one kind of question: at a point x, what are f(x) and the slope g? One fact about slopes helps us later: the tangent line never goes above the curve.",
+  {eq:"f(y) ≥ f(x) + g·(y − x) for every y"},
+  "The goal is to get within ε of the lowest value using as few questions as possible.",
+
+  {h:"Why not just use gradient descent?"},
+  "Gradient descent moves one point downhill, x ← x − η·g, and SGD, AdaGrad and RMSProp are all versions of this. You must tune the learning rate η: too big and it jumps around, too small and it crawls. Each slope is used for one small step and then forgotten.",
+  "That wastes information. A slope at x tells us that the whole uphill side is worse than x, which is a big region we could cross out for good. Gradient descent never crosses anything out. So the question is: can we cross out a big chunk of the search space every round, with no learning rate?",
+
+  {h:"The idea: a shrinking search region"},
+  "Think of guessing a number. You ask the middle, throw away half, and repeat. In one dimension that is binary search, and the Center of Gravity method does the same thing in n dimensions. Take the center of gravity (the balance point) of the region that is still possible. Ask the slope there, which tells you which side is uphill. Throw away the uphill side, so the region gets smaller every round.",
+
+  {h:"What each symbol means"},
+  {code:`X        the allowed region (a convex shape)
+n        number of variables (dimension)
+S_t      region still possible after t rounds (S_1 = X)
+c_t      center of gravity (balance point) of S_t
+g_t      slope of f at c_t
+vol(S)   size of S: length in 1-D, area in 2-D, volume in 3-D
+x*, f*   the best point and the lowest value
+Δ        gap between highest and lowest value of f on X
+x̂_t      best center tried so far`},
+
+  {h:"The algorithm"},
+  "1. Start with S_1 = X, so everything is still possible.",
+  "2. Find the center of gravity, which is the average of all points in S_t.",
+  {eq:"c_t = (1 / vol(S_t)) ∫ x dx   (integral over S_t)"},
+  "3. Ask the slope g_t at c_t. If g_t = 0, then c_t is the minimum, so stop.",
+  "4. Keep only the side that is not uphill.",
+  {eq:"S_(t+1) = S_t ∩ { x : g_t · (x − c_t) ≤ 0 }"},
+  "5. Repeat. The answer is the best c_s tried so far. There is no learning rate, so nothing to tune.",
+  "In pictures: the slope g_t points uphill, and the line through c_t at right angles to g_t is the cut. The uphill side is thrown away, and what is left is the next, smaller region.",
+
+  {h:"Derivation 1: why cutting is safe"},
+  "The claim is that the minimum point is never thrown away.",
+  "Step 1. The tangent line stays below the curve.",
+  {eq:"f(x) ≥ f(c_t) + g_t · (x − c_t)"},
+  "Step 2. We throw away x only when g_t · (x − c_t) > 0, the uphill side. For those points:",
+  {eq:"f(x) ≥ f(c_t) + (something positive) > f(c_t)"},
+  "Step 3. So every thrown-away point is worse than c_t. The minimum x* cannot be worse than c_t, so it is never thrown away.",
+
+  {h:"Derivation 2: how much is thrown away"},
+  "Here we use a fact due to Grünbaum. Cut any shape with a line through its center of gravity, and each side keeps at least (n/(n+1))ⁿ of the size, which is never below 1/e ≈ 37%.",
+  "The number comes from the worst-case shape, a cone of height h. Its center of gravity sits h/(n+1) above the base. Cutting there, parallel to the base, leaves a small cone of height n·h/(n+1). Size scales like (height)ⁿ, so:",
+  {eq:"kept fraction = ( n / (n+1) )ⁿ"},
+  "For n = 1 this is 1/2, for n = 2 it is 4/9 ≈ 44%, and as n → ∞ it tends to 1/e ≈ 37%. Since each side keeps at least 1/e, the side we keep is at most 1 − 1/e ≈ 63% of the region. After t − 1 cuts:",
+  {eq:"vol(S_t) ≤ (1 − 1/e)^(t−1) · vol(X) ≈ 0.63^(t−1) · vol(X)"},
+
+  {h:"Why the centroid?"},
+  "Cut near a corner and almost nothing goes. In a triangle, a cut near the tip removes only about 4%, so there is no guaranteed progress. Cut through the centroid and every side keeps at least 1/e ≈ 37%, so you always make real progress.",
+
+  {h:"Derivation 3: how fast does it converge?"},
+  "1. Shrink X toward the best point x* by a factor ε (0 < ε < 1). The shrunken copy has size εⁿ · vol(X).",
+  "2. After t rounds, if 0.63^(t−1) < εⁿ, our region is smaller than this copy, so some point y of the copy was thrown away.",
+  "3. Thrown away means f(y) > f(c_s) for some center c_s we tried (Derivation 1).",
+  "4. But y lies between x* and a point of X, so by the bowl shape, f(y) ≤ f* + εΔ.",
+  "5. So some center we tried is within εΔ of the best value. Choosing ε = 0.63^((t−1)/n) gives:",
+  {eq:"f(x̂_t) − f* ≤ Δ · (1 − 1/e)^((t−1)/n) ≈ Δ · e^(−0.46 · (t−1)/n)"},
+  "In words: every n rounds the error shrinks by a factor of about 0.63.",
+
+  {h:"How many rounds for a given accuracy?"},
+  "Set the error bound equal to ε and solve for t.",
+  {eq:"t ≈ 1 + 2.18 · n · ln(Δ / ε)"},
+  "Here 2.18 = 1 / ln(e / (e − 1)), which comes from the 0.63 factor. For example, take n = 10 variables and an error of 10⁻⁶ of the range Δ. Then ln(10⁶) ≈ 13.8, so:",
+  {eq:"t ≈ 1 + 2.18 · 10 · 13.8 ≈ 300 questions"},
+  "Plain subgradient descent can need about (1/ε)² = 10¹² steps for the same accuracy in the worst case, ignoring constants. The cost of the Center of Gravity method grows with the number of digits you want and with n.",
+
+  {h:"A worked example in one dimension"},
+  "Take f(x) = (x − 0.3)² on X = [0, 1]. In one dimension the center of gravity is just the midpoint, and the slope is g = 2(c − 0.3).",
+  {code:`t  region S_t        c = (a+b)/2   g = 2(c−0.3)   f(c)       keep
+1  [0, 1]            0.5           +0.4           0.04       x ≤ 0.5
+2  [0, 0.5]          0.25          −0.1           0.0025     x ≥ 0.25
+3  [0.25, 0.5]       0.375         +0.15          0.0056     x ≤ 0.375
+4  [0.25, 0.375]     0.3125        +0.025         0.00016    x ≤ 0.3125
+5  [0.25, 0.3125]    0.28125       −0.0375        0.00035    x ≥ 0.28125`},
+  "A positive slope means the minimum is on the left, so we keep x ≤ c. A negative slope means it is on the right, so we keep x ≥ c. The region halves each round and always contains 0.3, which is exactly binary search. The answer is the best center tried, c₄ = 0.3125 with f = 0.00016, not the last center c₅, which has f = 0.00035.",
+  {code:`def f(x): return (x - 0.3) ** 2
+def grad(x): return 2 * (x - 0.3)
+
+a, b = 0.0, 1.0
+best_c, best_f = None, float("inf")
+for t in range(1, 6):
+    c = (a + b) / 2            # center of gravity of [a, b]
+    g = grad(c)
+    if f(c) < best_f:
+        best_c, best_f = c, f(c)
+    if g == 0:
+        break
+    if g > 0:
+        b = c                  # keep x <= c
+    else:
+        a = c                  # keep x >= c
+
+print(best_c, best_f)          # 0.3125 0.00015625`},
+
+  {h:"Center of Gravity versus RMSProp and SGD"},
+  {code:`                  Center of gravity           RMSProp / SGD
+What it does      shrinks a search region     moves one point
+Settings to tune  none                        η, β, ε
+Needs             slope (gradient)            gradient (often minibatch)
+Guarantee         error shrinks               SGD: slow 1/√t
+                  geometrically, any          RMSProp: none in general
+                  convex f
+Cost per round    high: find the center       low: O(n)
+Deep nets         no                          yes`},
+  "The Center of Gravity method is a clean theory result for small n. RMSProp is a cheap practical tool for huge models.",
+
+  {h:"Advantages and limitations"},
+  "Advantages: there is no learning rate to tune, and the guarantee is clear, with the error dropping by 0.63 every n rounds. It works even if f has kinks, so no smoothness is needed, and the minimum is never lost.",
+  "Limitations: finding the center of gravity of a complicated shape is very hard. Every round adds one more cut, so the shape keeps getting more complex, and the method is practical only for a small number of variables. Two workarounds are to estimate the center by random sampling, or to use the ellipsoid method, which has an easier update but a slower rate.",
+
+  {h:"When it fails"},
+  "It only works when f is convex. Suppose f has two valleys. At a point c the slope is positive, so the rule throws away everything on the right. If the true minimum sits in the right-hand valley, it is lost for good. This is why the method is only safe for convex f.",
+
+  {h:"Things to remember"},
+  "It shrinks a region. It does not move a single point. Output the best center tried, not the last one: f(c_t) need not go down every round, only the region size does. It needs a convex f, so it is not used to train neural networks. It is a theory benchmark, and its practical relatives are the ellipsoid method and other cutting-plane methods. The center of gravity is the centroid, the average position of the region with uniform density.",
+
+  {h:"Summary"},
+  "One round: take the center of gravity c_t of S_t, ask the slope g_t there, and keep only the points with g_t · (x − c_t) ≤ 0. A safe cut (Derivation 1) that removes a guaranteed share of the region (Derivation 2) gives this bound:",
+  {eq:"f(x̂_t) − f* ≤ Δ · (1 − 1/e)^((t−1)/n)"},
+  "No learning rate, and the error falls by about 0.63 every n rounds."
+ ]}
 ];
 var app = document.getElementById("app");
 function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
@@ -116,9 +229,14 @@ function home(){
   h += "<div class=\"about\"><div class=\"l\">Who writes this?</div><div class=\"r\"><p>I write here to understand things properly. Posts are about machine learning, mostly from projects I am building.</p><p><a href=\"#about\">Read more about the blog</a></p></div></div>";
   return h;
 }
-function post(p,i){
-  var h = "<a class=\"btn\" href=\"#\">Back to all posts</a><div class=\"banner c" + (i % 3) + "\"><span class=\"date\">" + p.date + "</span><h1>" + esc(p.title) + "</h1>" + tags(p) + "</div><article><blockquote>" + esc(p.summary) + "</blockquote>";
-  p.body.forEach(function(t){h += "<p>" + esc(t) + "</p>"});
+function post(p){
+  var h = "<a class=\"btn\" href=\"#\">Back to all posts</a><div class=\"banner\"><span class=\"date\">" + p.date + "</span><h1>" + esc(p.title) + "</h1>" + tags(p) + "</div><article><blockquote>" + esc(p.summary) + "</blockquote>";
+  p.body.forEach(function(t){
+    if (typeof t === "string") h += "<p>" + esc(t) + "</p>";
+    else if (t.h) h += "<h2>" + esc(t.h) + "</h2>";
+    else if (t.eq) h += "<div class=\"eq\">" + esc(t.eq) + "</div>";
+    else if (t.code) h += "<pre>" + esc(t.code) + "</pre>";
+  });
   return h + "</article>";
 }
 function about(){
@@ -126,11 +244,10 @@ function about(){
 }
 function render(){
   var id = location.hash.replace("#","");
-  var idx = -1;
-  POSTS.forEach(function(x,i){if(x.id === id) idx = i});
-  app.innerHTML = idx > -1 ? post(POSTS[idx], idx) : (id === "about" ? about() : home());
+  var p = POSTS.filter(function(x){return x.id === id})[0];
+  app.innerHTML = p ? post(p) : (id === "about" ? about() : home());
   window.scrollTo(0,0);
-  document.title = idx > -1 ? POSTS[idx].title + " – Rootnotes" : "Rootnotes";
+  document.title = p ? p.title + " – Rootnotes" : "Rootnotes";
 }
 window.addEventListener("hashchange", render);
 render();
