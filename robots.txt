@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dhanunjaya007.github.io/root_notes/sitemap.xml

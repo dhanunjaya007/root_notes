@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rootnotes | Machine Learning &amp; Optimization Notes</title>
+    <link>https://dhanunjaya007.github.io/root_notes/</link>
+    <description>Derivations, algorithmic properties, and implementation notes written to understand machine learning from first principles.</description>
+    <language>en-us</language>
+    <atom:link href="https://dhanunjaya007.github.io/root_notes/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Silent Failures: Where Data Leakage Actually Hides in Machine Learning</title>
+      <link>https://dhanunjaya007.github.io/root_notes/#silent-data-leakage</link>
+      <guid isPermaLink="true">https://dhanunjaya007.github.io/root_notes/#silent-data-leakage</guid>
+      <pubDate>Mon, 16 Nov 2026 00:00:00 GMT</pubDate>
+      <description>Traditional software bugs crash with clear stack traces. Machine learning bugs succeed silently, report 98% accuracy on your screen, and collapse completely in production.</description>
+    </item>
+    <item>
+      <title>The Center of Gravity method: an optimizer with no learning rate</title>
+      <link>https://dhanunjaya007.github.io/root_notes/#center-of-gravity</link>
+      <guid isPermaLink="true">https://dhanunjaya007.github.io/root_notes/#center-of-gravity</guid>
+      <pubDate>Fri, 13 Nov 2026 00:00:00 GMT</pubDate>
+      <description>Binary search in n dimensions: how cutting through the centroid shrinks the search region, why it is safe, and how fast it converges.</description>
+    </item>
+  </channel>
+</rss>

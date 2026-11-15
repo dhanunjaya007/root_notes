@@ -1,284 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Rootnotes</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;800&family=Source+Sans+3:wght@400;700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --page:#d9d3b0; --ink:#2a1a0e; --bark:#3a2616; --moss:#2f4a24; --leaf:#6f9a3c;
-  --lichen:#c3d18a; --amber:#c98a2b; --paper:#efe9cc;
-  color-scheme:light; box-sizing:border-box;
-  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
-}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){--page:#1b140d;--ink:#e6dfc4;--paper:#2a2016;color-scheme:dark}
-}
-:root[data-theme="dark"]{--page:#1b140d;--ink:#e6dfc4;--paper:#2a2016;color-scheme:dark}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-*{box-sizing:border-box}
-body{margin:0;background:var(--page);color:var(--ink);font:1.0625rem/1.6 "Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bark);z-index:10}
-a{color:inherit}
-a:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
-.leafstrip{height:44px;background-color:var(--bark);background-repeat:repeat-x;background-position:center;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='44'%3E%3Cpath d='M24 4c10 6 12 18 0 34C12 22 14 10 24 4z' fill='%236f9a3c'/%3E%3Cpath d='M24 12v28' stroke='%232f4a24' stroke-width='2'/%3E%3Ccircle cx='4' cy='22' r='3' fill='%23c98a2b'/%3E%3C/svg%3E")}
-header{background:var(--moss);color:var(--lichen);border-bottom:8px solid var(--bark)}
-.top{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding:.9rem 1.25rem;background:var(--bark);font-weight:700}
-.top a{text-decoration:none;color:var(--lichen);margin-right:1.25rem}
-.top a:hover{color:var(--amber)}
-.hero{max-width:64rem;margin:0 auto;padding:2rem 1.25rem 2.5rem;position:relative}
-.hero h1{font:800 clamp(3.2rem,15vw,9.5rem)/.9 "Bitter",Georgia,serif;margin:0;letter-spacing:-.03em;color:var(--lichen);text-shadow:6px 6px 0 var(--bark)}
-.hero p{font:500 1.35rem/1.4 "Bitter",Georgia,serif;max-width:30rem;margin:1.25rem 0 0;color:var(--paper)}
-.stamp{position:absolute;right:1.25rem;top:1.5rem;width:7.5rem;height:7.5rem;border-radius:50%;background:var(--amber);color:var(--ink);
-  border:5px solid var(--bark);display:flex;align-items:center;justify-content:center;text-align:center;font:800 1.05rem/1.15 "Bitter",serif;transform:rotate(-12deg)}
-.ticker{background:var(--amber);color:var(--ink);border-bottom:6px solid var(--bark);padding:.55rem 1.25rem;font:800 1.05rem "Bitter",serif;overflow-x:auto;white-space:nowrap}
-.ticker span{margin-right:1.6rem}
-main{max-width:64rem;margin:0 auto;padding:2.5rem 1.25rem 3rem}
-.sec{font:800 2.2rem/1.1 "Bitter",serif;margin:0 0 1.25rem;padding-bottom:.4rem;border-bottom:6px solid var(--bark)}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.6rem}
-.card{border:5px solid var(--bark);box-shadow:8px 8px 0 var(--bark);padding:1.25rem;display:flex;flex-direction:column;gap:.5rem;color:var(--ink)}
-.card:nth-child(1){background:var(--leaf)} .card:nth-child(2){background:var(--amber)}
-.card h3{font:800 1.6rem/1.15 "Bitter",serif;margin:0}
-.card h3 a{text-decoration:none}
-.card h3 a:hover{text-decoration:underline;text-decoration-thickness:4px}
-.card p{margin:0}
-.tags{display:flex;gap:.4rem;flex-wrap:wrap}
-.tag{border:2px solid currentColor;border-radius:999px;padding:0 .65rem;font-weight:700;font-size:.9rem}
-.date{font-weight:700;font-size:.95rem}
-.about{margin-top:3rem;display:grid;grid-template-columns:1fr 2fr;gap:1.6rem;border:5px solid var(--bark);background:var(--paper);box-shadow:8px 8px 0 var(--bark)}
-.about .l{background:var(--moss);color:var(--lichen);padding:1.25rem;font:800 1.8rem/1.1 "Bitter",serif}
-.about .r{padding:1.25rem 1.25rem 1.25rem 0}
-.about .r p{margin:0 0 .8rem}
-.btn{display:inline-block;background:var(--amber);color:var(--ink);border:4px solid var(--bark);box-shadow:5px 5px 0 var(--bark);padding:.3rem .9rem;font-weight:700;text-decoration:none;margin-bottom:1.75rem}
-.btn:hover{background:var(--lichen)}
-.banner{border:5px solid var(--bark);box-shadow:8px 8px 0 var(--bark);padding:1.5rem;margin-bottom:2rem;background:var(--leaf);color:var(--ink)}
-.banner h1{font:800 clamp(2rem,6vw,3.4rem)/1.05 "Bitter",serif;margin:.6rem 0 .4rem}
-article{max-width:42rem}
-article p{margin:0 0 1.2rem;font-size:1.15rem;line-height:1.7}
-article p:first-of-type::first-letter{font:800 4.2rem/.8 "Bitter",serif;float:left;padding:.3rem .5rem 0 0;color:var(--moss)}
-:root[data-theme="dark"] article p:first-of-type::first-letter{color:var(--leaf)}
-article h2{font:800 1.7rem/1.2 "Bitter",serif;margin:2rem 0 .8rem;padding-bottom:.3rem;border-bottom:4px solid var(--bark);display:inline-block}
-.eq{border:4px solid var(--bark);background:var(--paper);padding:1rem;margin:0 0 1.2rem;overflow-x:auto;text-align:center;font-size:1.1rem}
-.eq .katex-display{margin:0}
-.tw{overflow-x:auto;margin:0 0 1.2rem}
-table{border-collapse:collapse;width:100%;border:4px solid var(--bark);background:var(--paper);font-size:1rem}
-th,td{border:2px solid var(--bark);padding:.45rem .7rem;text-align:left;vertical-align:top}
-th{background:var(--moss);color:var(--lichen)}
-pre{background:var(--bark);color:var(--lichen);border:4px solid var(--bark);padding:1rem;margin:0 0 1.2rem;overflow-x:auto;font:.95rem/1.5 ui-monospace,Consolas,monospace}
-blockquote{margin:0 0 1.5rem;padding:.8rem 1.1rem;border-left:12px solid var(--leaf);background:var(--paper);font:500 1.3rem/1.35 "Bitter",serif}
-footer{background:var(--bark);color:var(--lichen);text-align:center;padding:1.25rem;font-weight:700;border-top:8px solid var(--moss)}
-@media (max-width:640px){
-  .grid,.about{grid-template-columns:1fr}
-  .about .r{padding:0 1.25rem 1.25rem}
-  .stamp{position:static;margin-bottom:1rem;transform:rotate(-8deg)}
-  .hero h1{text-shadow:4px 4px 0 var(--bark)}
-}
-</style>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Rootnotes | Machine Learning &amp; Optimization Notes</title>
+  
+  <!-- Primary Search Engine Meta Tags -->
+  <meta name="description" content="Engineering publication covering machine learning foundations, optimization algorithms, data leakage prevention, and model evaluation from first principles.">
+  <meta name="keywords" content="machine learning, data leakage, optimization, center of gravity method, gradient descent, machine learning tutorials, deep learning, python, data science, rootnotes">
+  <meta name="author" content="Rootnotes">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow">
+  <link rel="canonical" href="https://dhanunjaya007.github.io/root_notes/">
+
+  <!-- Open Graph / Facebook / LinkedIn -->
+  <meta property="og:site_name" content="Rootnotes">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Rootnotes | Machine Learning &amp; Optimization Notes">
+  <meta property="og:description" content="Engineering publication covering machine learning foundations, optimization algorithms, and common failure modes from first principles.">
+  <meta property="og:url" content="https://dhanunjaya007.github.io/root_notes/">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Rootnotes | Machine Learning &amp; Optimization Notes">
+  <meta name="twitter:description" content="Engineering publication covering machine learning foundations, optimization algorithms, and common failure modes from first principles.">
+
+  <!-- Schema.org JSON-LD for Google Rich Snippets -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://dhanunjaya007.github.io/root_notes/#website",
+        "url": "https://dhanunjaya007.github.io/root_notes/",
+        "name": "Rootnotes",
+        "description": "Engineering publication covering machine learning foundations, optimization algorithms, and common failure modes.",
+        "inLanguage": "en-US"
+      },
+      {
+        "@type": "Blog",
+        "@id": "https://dhanunjaya007.github.io/root_notes/#blog",
+        "url": "https://dhanunjaya007.github.io/root_notes/",
+        "name": "Rootnotes Research & Systems",
+        "description": "Derivations, algorithmic properties, and implementation notes written to understand machine learning from first principles.",
+        "blogPost": [
+          {
+            "@type": "BlogPosting",
+            "headline": "Silent Failures: Where Data Leakage Actually Hides in Machine Learning",
+            "url": "https://dhanunjaya007.github.io/root_notes/#silent-data-leakage",
+            "datePublished": "2026-11-16",
+            "dateModified": "2026-11-16",
+            "description": "Traditional software bugs crash with clear stack traces. Machine learning bugs succeed silently, report 98% accuracy on your screen, and collapse completely in production."
+          },
+          {
+            "@type": "BlogPosting",
+            "headline": "The Center of Gravity method: an optimizer with no learning rate",
+            "url": "https://dhanunjaya007.github.io/root_notes/#center-of-gravity",
+            "datePublished": "2026-11-13",
+            "dateModified": "2026-11-13",
+            "description": "Binary search in n dimensions: how cutting through the centroid shrinks the search region, why it is safe, and how fast it converges."
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="alternate" type="application/rss+xml" title="Rootnotes RSS Feed" href="feed.xml">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
 </head>
 <body>
-<header>
-  <div class="top"><a href="#" aria-label="Rootnotes home" style="font-family:Bitter,serif;font-size:1.2rem">Rootnotes</a><span><a href="#">Posts</a><a href="#about" style="margin:0">About</a></span></div>
-  <div class="hero">
-    <div class="stamp">AI +<br>ML</div>
-    <h1>Root<br>notes</h1>
-    <p>Things I build, break and finally understand in machine learning.</p>
+  <div class="container">
+    <header class="masthead">
+      <div class="masthead-brand">
+        <a href="#" class="brand-logotype">Rootnotes<span>.</span></a>
+        <span class="brand-subtext">Research &amp; Systems</span>
+      </div>
+      <nav class="masthead-nav">
+        <a href="#">Articles</a>
+        <a href="#about">About</a>
+        <a href="feed.xml" target="_blank" rel="noopener">RSS</a>
+        <a href="https://github.com/dhanunjaya007/root_notes" target="_blank" rel="noopener">GitHub &nearr;</a>
+      </nav>
+    </header>
+
+    <main id="app"></main>
+
+    <footer>
+      <span>Rootnotes &copy; 2026</span>
+      <span><a href="#about">About &amp; Disclaimer</a></span>
+    </footer>
   </div>
-  <div class="leafstrip" role="presentation"></div>
-</header>
-<div class="ticker" aria-hidden="true"><span>Optimizers</span><span>Convex optimization</span><span>Fine-tuning</span><span>NLP</span><span>Small experiments</span><span>Optimizers</span><span>Convex optimization</span></div>
-<main id="app"></main>
-<div class="leafstrip" role="presentation"></div>
-<footer>Rootnotes. Grown slowly, one post at a time.</footer>
-<script>
-var r = String.raw;
-var POSTS = [
- {id:"center-of-gravity", title:"The Center of Gravity method: an optimizer with no learning rate", date:"13 November 2026", tags:["Optimizers","Convex optimization"],
- summary:"Binary search in n dimensions: how cutting through the centroid shrinks the search region, why it is safe, and how fast it converges.",
- body:[
-  {h:"The problem: finding the lowest point"},
-  r`We have a bowl-shaped (convex) function $f$ and an allowed region $X$, and we want the lowest value of $f$ inside $X$.`,
-  {eq:r`\min_{x \in X} f(x)`},
-  r`Convex means there are no fake valleys, so any local minimum is the global minimum. We are only allowed one kind of question: at a point $x$, what are $f(x)$ and the slope $g$? One fact about slopes helps us later: the tangent line never goes above the curve.`,
-  {eq:r`f(y) \ge f(x) + g \cdot (y - x) \quad \text{for every } y`},
-  r`The goal is to get within $\varepsilon$ of the lowest value using as few questions as possible.`,
 
-  {h:"Why not just use gradient descent?"},
-  r`Gradient descent moves one point downhill, $x \leftarrow x - \eta\, g$, and SGD, AdaGrad and RMSProp are all versions of this. You must tune the learning rate $\eta$: too big and it jumps around, too small and it crawls. Each slope is used for one small step and then forgotten.`,
-  "That wastes information. A slope at x tells us that the whole uphill side is worse than x, which is a big region we could cross out for good. Gradient descent never crosses anything out. So the question is: can we cross out a big chunk of the search space every round, with no learning rate?",
+  <!-- Integrated Quick Read Modal -->
+  <div id="quick-read-modal" class="modal-backdrop" onclick="if(event.target===this) window.closeQuickRead()">
+    <div class="modal-window">
+      <div class="modal-header">
+        <div>
+          <div id="modal-post-meta"></div>
+          <h2 id="modal-post-title"></h2>
+        </div>
+        <button class="modal-close-btn" onclick="window.closeQuickRead()" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body" id="modal-post-body"></div>
+      <div class="modal-footer">
+        <button class="text-action-link secondary" onclick="window.closeQuickRead()">Close Preview</button>
+        <a id="modal-full-link" href="#" class="text-action-link">Open Full Article &rarr;</a>
+      </div>
+    </div>
+  </div>
 
-  {h:"The idea: a shrinking search region"},
-  r`Think of guessing a number. You ask the middle, throw away half, and repeat. In one dimension that is binary search, and the Center of Gravity method does the same thing in $n$ dimensions. Take the center of gravity (the balance point) of the region that is still possible. Ask the slope there, which tells you which side is uphill. Throw away the uphill side, so the region gets smaller every round.`,
+  <!-- Post Data -->
+  <script src="posts/center-of-gravity.js"></script>
+  <script src="posts/silent-data-leakage.js"></script>
 
-  {h:"What each symbol means"},
-  {tbl:[
-   ["Symbol","Meaning"],
-   [r`$X$`,"The allowed region (a convex shape)"],
-   [r`$n$`,"Number of variables (dimension)"],
-   [r`$S_t$`,r`Region still possible after $t$ rounds ($S_1 = X$)`],
-   [r`$c_t$`,r`Center of gravity (balance point) of $S_t$`],
-   [r`$g_t$`,r`Slope of $f$ at $c_t$`],
-   [r`$\mathrm{vol}(S)$`,"Size of S: length in 1-D, area in 2-D, volume in 3-D"],
-   [r`$x^*,\ f^*$`,"The best point and the lowest value"],
-   [r`$\Delta$`,r`Gap between the highest and lowest value of $f$ on $X$`],
-   [r`$\hat{x}_t$`,"Best center tried so far"]
-  ]},
-
-  {h:"The algorithm"},
-  r`1. Start with $S_1 = X$, so everything is still possible.`,
-  "2. Find the center of gravity, which is the average of all points in the current region.",
-  {eq:r`c_t = \frac{1}{\mathrm{vol}(S_t)} \int_{S_t} x \, dx`},
-  r`3. Ask the slope $g_t$ at $c_t$. If $g_t = 0$, then $c_t$ is the minimum, so stop.`,
-  "4. Keep only the side that is not uphill.",
-  {eq:r`S_{t+1} = S_t \cap \{\, x : g_t \cdot (x - c_t) \le 0 \,\}`},
-  r`5. Repeat. The answer is the best $c_s$ tried so far. There is no learning rate, so nothing to tune.`,
-  r`In pictures: the slope $g_t$ points uphill, and the line through $c_t$ at right angles to $g_t$ is the cut. The uphill side is thrown away, and what is left is the next, smaller region.`,
-
-  {h:"Derivation 1: why cutting is safe"},
-  "The claim is that the minimum point is never thrown away.",
-  "Step 1. The tangent line stays below the curve.",
-  {eq:r`f(x) \ge f(c_t) + g_t \cdot (x - c_t)`},
-  r`Step 2. We throw away $x$ only when $g_t \cdot (x - c_t) > 0$, the uphill side. For those points:`,
-  {eq:r`f(x) \ge f(c_t) + (\text{something positive}) > f(c_t)`},
-  r`Step 3. So every thrown-away point is worse than $c_t$. The minimum $x^*$ cannot be worse than $c_t$, so it is never thrown away.`,
-
-  {h:"Derivation 2: how much is thrown away"},
-  r`Here we use a fact due to Grünbaum. Cut any shape with a line through its center of gravity, and each side keeps at least $\left(\frac{n}{n+1}\right)^n$ of the size, which is never below $1/e$ (about 37%).`,
-  r`The number comes from the worst-case shape, a cone of height $h$. Its center of gravity sits $\frac{h}{n+1}$ above the base. Cutting there, parallel to the base, leaves a small cone of height $\frac{nh}{n+1}$. Size scales like $(\text{height})^n$, so:`,
-  {eq:r`\text{kept fraction} = \left(\frac{n}{n+1}\right)^{n}`},
-  r`For $n = 1$ this is $1/2$, for $n = 2$ it is $4/9$ (about 44%), and as $n \to \infty$ it tends to $1/e$. Since each side keeps at least $1/e$, the side we keep is at most $1 - 1/e$, about 63% of the region. After $t-1$ cuts:`,
-  {eq:r`\mathrm{vol}(S_t) \le \left(1 - \frac{1}{e}\right)^{t-1} \mathrm{vol}(X) \approx 0.63^{\,t-1}\, \mathrm{vol}(X)`},
-
-  {h:"Why the centroid?"},
-  r`Cut near a corner and almost nothing goes. In a triangle, a cut near the tip removes only about 4%, so there is no guaranteed progress. Cut through the centroid and every side keeps at least $1/e$, so you always make real progress.`,
-
-  {h:"Derivation 3: how fast does it converge?"},
-  r`1. Shrink $X$ toward the best point $x^*$ by a factor $\varepsilon$ with $0 < \varepsilon < 1$. The shrunken copy has size $\varepsilon^n \cdot \mathrm{vol}(X)$.`,
-  r`2. After $t$ rounds, if $0.63^{\,t-1} < \varepsilon^n$, our region is smaller than this copy, so some point $y$ of the copy was thrown away.`,
-  r`3. Thrown away means $f(y) > f(c_s)$ for some center $c_s$ we tried (Derivation 1).`,
-  r`4. But $y$ lies between $x^*$ and a point of $X$, so by the bowl shape, $f(y) \le f^* + \varepsilon\Delta$.`,
-  r`5. So some center we tried is within $\varepsilon\Delta$ of the best value. Choosing $\varepsilon = 0.63^{(t-1)/n}$ gives:`,
-  {eq:r`f(\hat{x}_t) - f^* \le \Delta \left(1 - \frac{1}{e}\right)^{\frac{t-1}{n}} \approx \Delta\, e^{-0.46\,\frac{t-1}{n}}`},
-  "In words: every n rounds the error shrinks by a factor of about 0.63.",
-
-  {h:"How many rounds for a given accuracy?"},
-  r`Set the error bound equal to $\varepsilon$ and solve for $t$.`,
-  {eq:r`t \approx 1 + 2.18\, n \ln\frac{\Delta}{\varepsilon}`},
-  r`Here $2.18 = 1 / \ln\frac{e}{e-1}$, which comes from the 0.63 factor. For example, take $n = 10$ variables and an error of $10^{-6}$ of the range $\Delta$. Then $\ln(10^6) \approx 13.8$, so:`,
-  {eq:r`t \approx 1 + 2.18 \cdot 10 \cdot 13.8 \approx 300 \text{ questions}`},
-  r`Plain subgradient descent can need about $(1/\varepsilon)^2 = 10^{12}$ steps for the same accuracy in the worst case, ignoring constants. The cost of the Center of Gravity method grows with the number of digits you want and with $n$.`,
-
-  {h:"A worked example in one dimension"},
-  r`Take $f(x) = (x - 0.3)^2$ on $X = [0, 1]$. In one dimension the center of gravity is just the midpoint, and the slope is $g = 2(c - 0.3)$.`,
-  {tbl:[
-   [r`$t$`,r`Region $S_t$`,r`Center $c=\frac{a+b}{2}$`,r`Slope $g=2(c-0.3)$`,r`$f(c)$`,"Keep"],
-   ["1",r`$[0,\,1]$`,r`$0.5$`,r`$+0.4$`,r`$0.04$`,r`$x \le 0.5$`],
-   ["2",r`$[0,\,0.5]$`,r`$0.25$`,r`$-0.1$`,r`$0.0025$`,r`$x \ge 0.25$`],
-   ["3",r`$[0.25,\,0.5]$`,r`$0.375$`,r`$+0.15$`,r`$0.0056$`,r`$x \le 0.375$`],
-   ["4",r`$[0.25,\,0.375]$`,r`$0.3125$`,r`$+0.025$`,r`$0.00016$`,r`$x \le 0.3125$`],
-   ["5",r`$[0.25,\,0.3125]$`,r`$0.28125$`,r`$-0.0375$`,r`$0.00035$`,r`$x \ge 0.28125$`]
-  ]},
-  r`A positive slope means the minimum is on the left, so we keep $x \le c$. A negative slope means it is on the right, so we keep $x \ge c$. The region halves each round and always contains $0.3$, which is exactly binary search. The answer is the best center tried, $c_4 = 0.3125$ with $f = 0.00016$, not the last center $c_5$, which has $f = 0.00035$.`,
-  {code:`def f(x): return (x - 0.3) ** 2
-def grad(x): return 2 * (x - 0.3)
-
-a, b = 0.0, 1.0
-best_c, best_f = None, float("inf")
-for t in range(1, 6):
-    c = (a + b) / 2            # center of gravity of [a, b]
-    g = grad(c)
-    if f(c) < best_f:
-        best_c, best_f = c, f(c)
-    if g == 0:
-        break
-    if g > 0:
-        b = c                  # keep x <= c
-    else:
-        a = c                  # keep x >= c
-
-print(best_c, best_f)          # 0.3125 0.00015625`},
-
-  {h:"Center of Gravity versus RMSProp and SGD"},
-  {tbl:[
-   ["","Center of gravity","RMSProp / SGD"],
-   ["What it does","Shrinks a search region","Moves one point"],
-   ["Settings to tune","None",r`$\eta,\ \beta,\ \varepsilon$`],
-   ["Needs","Slope (gradient)","Gradient (often minibatch)"],
-   ["Guarantee",r`Error shrinks geometrically for any convex $f$`,r`SGD: slow $1/\sqrt{t}$. RMSProp: none in general`],
-   ["Cost per round","High: find the center of gravity",r`Low: $O(n)$`],
-   ["Works for deep nets","No","Yes"]
-  ]},
-  "The Center of Gravity method is a clean theory result for small n. RMSProp is a cheap practical tool for huge models.",
-
-  {h:"Advantages and limitations"},
-  r`Advantages: there is no learning rate to tune, and the guarantee is clear, with the error dropping by 0.63 every $n$ rounds. It works even if $f$ has kinks, so no smoothness is needed, and the minimum is never lost.`,
-  "Limitations: finding the center of gravity of a complicated shape is very hard. Every round adds one more cut, so the shape keeps getting more complex, and the method is practical only for a small number of variables. Two workarounds are to estimate the center by random sampling, or to use the ellipsoid method, which has an easier update but a slower rate.",
-
-  {h:"When it fails"},
-  r`It only works when $f$ is convex. Suppose $f$ has two valleys. At a point $c$ the slope is positive, so the rule throws away everything on the right. If the true minimum sits in the right-hand valley, it is lost for good. This is why the method is only safe for convex $f$.`,
-
-  {h:"Things to remember"},
-  r`It shrinks a region. It does not move a single point. Output the best center tried, not the last one: $f(c_t)$ need not go down every round, only the region size does. It needs a convex $f$, so it is not used to train neural networks. It is a theory benchmark, and its practical relatives are the ellipsoid method and other cutting-plane methods. The center of gravity is the centroid, the average position of the region with uniform density.`,
-
-  {h:"Summary"},
-  r`One round: take the center of gravity $c_t$ of $S_t$, ask the slope $g_t$ there, and keep only the points with $g_t \cdot (x - c_t) \le 0$. A safe cut (Derivation 1) that removes a guaranteed share of the region (Derivation 2) gives this bound:`,
-  {eq:r`f(\hat{x}_t) - f^* \le \Delta \left(1 - \frac{1}{e}\right)^{\frac{t-1}{n}}`},
-  "No learning rate, and the error falls by about 0.63 every n rounds."
- ]}
-];
-var app = document.getElementById("app");
-function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
-function tags(p){return "<div class=\"tags\">" + p.tags.map(function(t){return "<span class=\"tag\">" + esc(t) + "</span>"}).join("") + "</div>"}
-function home(){
-  var h = "<h2 class=\"sec\">Latest posts</h2><div class=\"grid\">";
-  POSTS.forEach(function(p){
-    h += "<div class=\"card\"><span class=\"date\">" + p.date + "</span><h3><a href=\"#" + p.id + "\">" + esc(p.title) + "</a></h3><p>" + esc(p.summary) + "</p>" + tags(p) + "</div>";
-  });
-  h += "<div class=\"card\"><span class=\"date\">Coming soon</span><h3>Your next post goes here</h3><p>Pick one thing you learned this week and write it down.</p></div></div>";
-  h += "<div class=\"about\"><div class=\"l\">Who writes this?</div><div class=\"r\"><p>I write here to understand things properly. Posts are about machine learning, mostly from projects I am building.</p><p><a href=\"#about\">Read more about the blog</a></p></div></div>";
-  return h;
-}
-function post(p){
-  var h = "<a class=\"btn\" href=\"#\">Back to all posts</a><div class=\"banner\"><span class=\"date\">" + p.date + "</span><h1>" + esc(p.title) + "</h1>" + tags(p) + "</div><article><blockquote>" + esc(p.summary) + "</blockquote>";
-  p.body.forEach(function(t){
-    if (typeof t === "string") h += "<p>" + esc(t) + "</p>";
-    else if (t.h) h += "<h2>" + esc(t.h) + "</h2>";
-    else if (t.eq) h += "<div class=\"eq\">$$" + esc(t.eq) + "$$</div>";
-    else if (t.tbl) h += tbl(t.tbl);
-    else if (t.code) h += "<pre>" + esc(t.code) + "</pre>";
-  });
-  return h + "</article>";
-}
-function tbl(rows){
-  var h = "<div class=\"tw\"><table>";
-  rows.forEach(function(row,i){
-    var tag = i ? "td" : "th";
-    h += "<tr>" + row.map(function(c){return "<" + tag + ">" + esc(c) + "</" + tag + ">"}).join("") + "</tr>";
-  });
-  return h + "</table></div>";
-}
-function about(){
-  return "<a class=\"btn\" href=\"#\">Back to all posts</a><h2 class=\"sec\">About</h2><article><p>I write here to understand things properly. Posts are about machine learning, mostly from projects I am building.</p><p>Write a few lines about yourself here.</p></article>";
-}
-function render(){
-  var id = location.hash.replace("#","");
-  var p = POSTS.filter(function(x){return x.id === id})[0];
-  app.innerHTML = p ? post(p) : (id === "about" ? about() : home());
-  typeset();
-  window.scrollTo(0,0);
-  document.title = p ? p.title + " – Rootnotes" : "Rootnotes";
-}
-function typeset(){
-  if (window.renderMathInElement) renderMathInElement(app, {delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}], throwOnError:false});
-}
-window.addEventListener("load", typeset);
-window.addEventListener("hashchange", render);
-render();
-</script>
+  <!-- Application Engine -->
+  <script src="js/app.js"></script>
 </body>
 </html>
